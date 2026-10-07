@@ -1,0 +1,27 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+}
+
+const { id = 'features', class: className = '' } = Astro.props;
+---
+
+<section id={id} class:list={['features-section', className]} aria-label="Features">
+  <div class="container features-container">
+    <slot>
+      <!-- Feature/content grid or list will be implemented from design handoff -->
+    </slot>
+  </div>
+</section>
+
+<style>
+  .features-section {
+    width: 100%;
+    padding-block: var(--section-spacing-y);
+  }
+
+  .features-container {
+    width: 100%;
+  }
+</style>

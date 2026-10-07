@@ -1,0 +1,32 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+  'aria-label'?: string;
+}
+
+const {
+  id = 'supporting-content',
+  class: className = '',
+  'aria-label': ariaLabel = 'Supporting Content',
+} = Astro.props;
+---
+
+<section id={id} class:list={['supporting-section', className]} aria-label={ariaLabel}>
+  <div class="container supporting-container">
+    <slot>
+      <!-- Supporting content (logos, stats, social proof, overview) will be implemented from design handoff -->
+    </slot>
+  </div>
+</section>
+
+<style>
+  .supporting-section {
+    width: 100%;
+    padding-block: calc(var(--section-spacing-y) * 0.75);
+  }
+
+  .supporting-container {
+    width: 100%;
+  }
+</style>

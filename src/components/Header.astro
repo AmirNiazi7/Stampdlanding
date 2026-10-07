@@ -1,0 +1,252 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<header class:list={['site-header', className]} id="header">
+  <div class="container header-inner">
+    <!-- Stampd Logo (Always inline flex: icon on left, wordmark on right) -->
+    <a href="/" class="brand-logo" aria-label="Stampd Homepage">
+      <span class="logo-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="28" height="28" rx="8" fill="#F05314" />
+          <circle cx="14" cy="14" r="6" stroke="#FFFFFF" stroke-width="2.2" stroke-dasharray="2.5 2" />
+          <path d="M14 11V17M11 14H17" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </span>
+      <span class="brand-wordmark">stampd</span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="site-nav" aria-label="Main Navigation">
+      <ul class="nav-list">
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#how-it-works" class="nav-link">How it works</a></li>
+        <li><a href="#invite-friends" class="nav-link">Invite Friends</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <!-- Header Actions (CTA + Mobile hamburger) -->
+    <div class="header-actions">
+      <a href="#get-started" class="btn btn-primary btn-header">Get Started</a>
+
+      <!-- Mobile hamburger toggle -->
+      <button class="mobile-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile navigation drawer (Hidden by default) -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav class="mobile-nav">
+      <a href="#features" class="mobile-nav-link">Features</a>
+      <a href="#how-it-works" class="mobile-nav-link">How it works</a>
+      <a href="#invite-friends" class="mobile-nav-link">Invite Friends</a>
+      <a href="#faq" class="mobile-nav-link">FAQ</a>
+      <a href="#get-started" class="btn btn-primary mobile-cta">Get Started</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isExpanded));
+      menu.classList.toggle('is-open');
+      menu.setAttribute('aria-hidden', String(isExpanded));
+    });
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('is-open');
+        menu.setAttribute('aria-hidden', 'true');
+      });
+    });
+  }
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(232, 231, 226, 0.7);
+  }
+
+  .header-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 4.75rem;
+  }
+
+  /* Logo: horizontal inline flex */
+  .brand-logo {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+  }
+
+  .brand-wordmark {
+    font-size: 1.625rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--color-text-primary);
+    line-height: 1;
+  }
+
+  /* Nav Links */
+  .site-nav {
+    display: none;
+  }
+
+  .nav-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    position: relative;
+    padding-block: 0.25rem;
+    transition: color var(--transition-fast);
+  }
+
+  .nav-link:hover {
+    color: var(--color-primary);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width var(--transition-base);
+    border-radius: var(--radius-pill);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Actions */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .btn-header {
+    padding: 0.625rem 1.35rem;
+    font-size: 0.875rem;
+  }
+
+  .mobile-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--color-text-primary);
+    border-radius: 2px;
+  }
+
+  /* Mobile Menu Drawer - strictly hidden unless .is-open */
+  .mobile-menu {
+    display: none !important;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid var(--color-border);
+    padding: 1.5rem var(--container-gutter);
+  }
+
+  .mobile-menu.is-open {
+    display: block !important;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    text-decoration: none;
+  }
+
+  .mobile-cta {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+
+  /* Show nav links on desktop / tablet */
+  @media screen and (min-width: 768px) {
+    .site-nav {
+      display: block;
+    }
+
+    .mobile-toggle {
+      display: none !important;
+    }
+
+    .mobile-menu {
+      display: none !important;
+    }
+  }
+</style>

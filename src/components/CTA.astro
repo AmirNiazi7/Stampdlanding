@@ -1,0 +1,27 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+}
+
+const { id = 'cta', class: className = '' } = Astro.props;
+---
+
+<section id={id} class:list={['cta-section', className]} aria-label="Call to Action">
+  <div class="container cta-container">
+    <slot>
+      <!-- CTA block, copy, and actions will be implemented from design handoff -->
+    </slot>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    width: 100%;
+    padding-block: var(--section-spacing-y);
+  }
+
+  .cta-container {
+    width: 100%;
+  }
+</style>

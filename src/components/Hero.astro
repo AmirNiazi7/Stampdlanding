@@ -1,0 +1,191 @@
+---
+import mockupSvg from '@assets/mockup.svg';
+import heroBg from '@assets/hero-bg.jpg';
+---
+
+<section class="hero-section" id="hero">
+  <div class="container">
+    <div class="hero-card" style={`background-image: url('${heroBg.src}');`}>
+      <div class="hero-grid">
+        <!-- Left Content -->
+        <div class="hero-content">
+          <div class="pill-badge pill-badge--white hero-badge">
+            <span class="badge-dot"></span>
+            <span>Meet Stampd Today</span>
+          </div>
+
+          <h1 class="hero-title">
+            Your Taste,<br />Mapped.
+          </h1>
+
+          <p class="hero-subtitle">
+            Save restaurants, cafes, bars and hidden gems on a map that feels like you.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#get-started" class="btn btn-white btn-hero">Get Started</a>
+            <a href="#features" class="btn btn-ghost-white btn-hero">
+              <span>Meet your map</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+
+          <p class="hero-promise">
+            From "we should go" to "let's go here".
+          </p>
+        </div>
+
+        <!-- Right Visual Mockups using mockup.svg -->
+        <div class="hero-visual">
+          <div class="mockup-frame">
+            <img 
+              src={mockupSvg.src} 
+              alt="Stampd mobile app interface showing map discovery and friend recommendations" 
+              class="hero-mockup-svg" 
+              width="601" 
+              height="604" 
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .hero-card {
+    position: relative;
+    background-color: #F05314;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    padding: 2.25rem 2rem;
+    box-shadow: var(--shadow-orange);
+    color: #FFFFFF;
+  }
+
+  .hero-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  /* Left Hero Content */
+  .hero-content {
+    max-width: 520px;
+  }
+
+  .hero-badge {
+    margin-bottom: 0.875rem;
+  }
+
+  .badge-dot {
+    width: 7px;
+    height: 7px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    animation: pulseSubtle 2s infinite ease-in-out;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 3.875rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    margin-bottom: 0.875rem;
+    color: #FFFFFF;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 1.5rem;
+    max-width: 460px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .btn-hero {
+    padding: 0.75rem 1.625rem;
+    font-size: 0.9375rem;
+  }
+
+  .hero-promise {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+  }
+
+  /* Right Visual Mockup */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    padding-block: 0;
+  }
+
+  .mockup-frame {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform var(--transition-base);
+  }
+
+  .mockup-frame:hover {
+    transform: translateY(-3px) scale(1.015);
+  }
+
+  .hero-mockup-svg {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    filter: drop-shadow(0 16px 30px rgba(22, 10, 4, 0.28));
+  }
+
+  /* Responsive Breakpoints */
+  @media screen and (min-width: 960px) {
+    .hero-card {
+      padding: 2.75rem 3rem;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .hero-card {
+      padding: 1.75rem 1.25rem;
+      border-radius: var(--radius-lg);
+    }
+  }
+</style>

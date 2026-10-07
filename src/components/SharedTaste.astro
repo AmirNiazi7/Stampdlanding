@@ -1,0 +1,163 @@
+---
+import sharedTasteBg from '@assets/shared-taste-bg.jpg';
+import group48Svg from '@assets/Group 48.svg';
+---
+
+<section class="shared-taste-section" id="invite-friends">
+  <div class="container">
+    <div class="shared-card" style={`background-image: url('${sharedTasteBg.src}');`}>
+      <!-- Section Header -->
+      <div class="shared-header">
+        <h2 class="shared-title">
+          Good taste is better shared.
+        </h2>
+        <p class="shared-subtitle">
+          Find your people. Follow what they're saying. Turn a shared list into your next catch-up.
+        </p>
+      </div>
+
+      <!-- Realistic 3-Phone Mockup Composition from Figma Group 48.svg -->
+      <div class="shared-mockup-stage" aria-hidden="true">
+        <img 
+          src={group48Svg.src} 
+          alt="Stampd community mobile app interface showing shared taste, invite friends and friends feed" 
+          class="shared-mockup-img" 
+          width="1177" 
+          height="786" 
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .shared-taste-section {
+    padding-block: 4rem;
+  }
+
+  /* 1. Section background and proportions: sleeker ratio with deeper bottom crop */
+  .shared-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.82 / 1;
+    background-color: #F05314;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    border-radius: clamp(32px, 4.6vw, 56px);
+    padding-top: clamp(2.25rem, 4.2vw, 3.25rem);
+    padding-inline: 1.5rem;
+    color: #FFFFFF;
+    box-shadow: 0 20px 48px -12px rgba(240, 83, 20, 0.32);
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* 2. Heading and subtitle */
+  .shared-header {
+    width: 100%;
+    max-width: 980px;
+    margin-inline: auto;
+    z-index: 2;
+    position: relative;
+  }
+
+  .shared-title {
+    font-size: clamp(1.875rem, 3.125vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: #FFFFFF;
+    margin: 0;
+  }
+
+  .shared-subtitle {
+    font-size: clamp(0.875rem, 1.36vw, 1.0625rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+  /* 3 & 4. Phone composition: cropped deeper at the bottom edge */
+  .shared-mockup-stage {
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 86%;
+    max-width: 980px;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .shared-mockup-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Responsive Behavior */
+  @media (max-width: 900px) {
+    .shared-subtitle {
+      white-space: normal;
+      max-width: 620px;
+      margin-inline: auto;
+    }
+
+    .shared-card {
+      aspect-ratio: 1.55 / 1;
+      min-height: 480px;
+    }
+
+    .shared-mockup-stage {
+      top: 36%;
+      width: 96%;
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .shared-taste-section {
+      padding-block: 3rem;
+    }
+
+    .shared-card {
+      aspect-ratio: auto;
+      min-height: 440px;
+      padding-top: 2rem;
+      padding-inline: 1.25rem;
+      border-radius: 28px;
+    }
+
+    .shared-title {
+      font-size: 1.75rem;
+    }
+
+    .shared-subtitle {
+      font-size: 0.875rem;
+    }
+
+    .shared-mockup-stage {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      left: auto;
+      transform: none;
+      width: 120%;
+      margin-top: 1.25rem;
+      margin-bottom: -25%;
+    }
+  }
+</style>

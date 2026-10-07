@@ -1,0 +1,129 @@
+---
+import awardIcon from '@assets/award.svg';
+
+interface MetricItem {
+  icon: ImageMetadata | string;
+  count: string;
+  label: string;
+}
+
+const metrics: MetricItem[] = [
+  {
+    icon: awardIcon,
+    count: '5000+',
+    label: 'Restaurants'
+  },
+  {
+    icon: awardIcon,
+    count: '5000+',
+    label: 'Cafes'
+  },
+  {
+    icon: awardIcon,
+    count: '5000+',
+    label: 'Bars'
+  },
+  {
+    icon: awardIcon,
+    count: '5000+',
+    label: 'Hidden gems'
+  }
+];
+---
+
+<section class="metrics-section" aria-label="Key Categories and Statistics">
+  <div class="container">
+    <div class="metrics-grid">
+      {metrics.map((item) => {
+        const iconSrc = typeof item.icon === 'string' ? item.icon : item.icon.src;
+        return (
+          <div class="metric-card">
+            <div class="metric-icon-wrap" aria-hidden="true">
+              <img src={iconSrc} alt="" class="metric-award-icon" width="27" height="27" />
+            </div>
+            <div class="metric-content">
+              <span class="metric-count">{item.count}</span>
+              <span class="metric-label">{item.label}</span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  .metrics-section {
+    padding-top: 1.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .metrics-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+  }
+
+  .metric-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.125rem 1.35rem;
+    box-shadow: var(--shadow-xs);
+    transition: all var(--transition-base);
+  }
+
+  .metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+    border-color: rgba(240, 83, 20, 0.3);
+  }
+
+  .metric-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: #FFF4ED;
+    border: 1px solid rgba(240, 83, 20, 0.15);
+    flex-shrink: 0;
+  }
+
+  .metric-award-icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+    object-fit: contain;
+  }
+
+  .metric-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .metric-count {
+    font-size: 1.375rem;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .metric-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+</style>

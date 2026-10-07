@@ -1,0 +1,35 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Hero from '@components/Hero.astro';
+import MetricsBar from '@components/MetricsBar.astro';
+import BrowsingFeature from '@components/BrowsingFeature.astro';
+import WorkflowBanner from '@components/WorkflowBanner.astro';
+import SocialImport from '@components/SocialImport.astro';
+import SharedTaste from '@components/SharedTaste.astro';
+import FaqSection from '@components/FaqSection.astro';
+import Testimonials from '@components/Testimonials.astro';
+import BottomCta from '@components/BottomCta.astro';
+import Footer from '@components/Footer.astro';
+---
+
+<BaseLayout 
+  title="Stampd — Your Taste, Mapped" 
+  description="Save restaurants, cafes, bars and hidden gems on a map that feels like you. One central place for all the places you want to try."
+>
+  <Header />
+
+  <main id="main-content">
+    <Hero />
+    <MetricsBar />
+    <BrowsingFeature />
+    <WorkflowBanner />
+    <SocialImport />
+    <SharedTaste />
+    <FaqSection />
+    <Testimonials />
+    <BottomCta />
+  </main>
+
+  <Footer />
+</BaseLayout>

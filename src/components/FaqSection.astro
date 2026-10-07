@@ -1,0 +1,289 @@
+---
+import faqMapImg from '@assets/faq-map.png';
+
+const faqs = [
+  {
+    id: 'faq-1',
+    question: 'How does Stampd work?',
+    answer: 'Save restaurants, cafés, bars and hidden gems to your personal map. Organize them into lists, find saved spots nearby and get directions. After a visit, mark the place as Stamped and add a note for next time.',
+    defaultOpen: true
+  },
+  {
+    id: 'faq-2',
+    question: 'Can I save a place from a post link?',
+    answer: 'Yes! Just paste any Instagram Reel, TikTok video, or post URL that includes a location tag. Stampd automatically extracts the venue name, coordinates, and details via Google Maps.',
+    defaultOpen: false
+  },
+  {
+    id: 'faq-3',
+    question: 'Are my lists private or shareable?',
+    answer: 'By default, all your lists are private to you. You can choose to make any list public or generate a private invite link to collaborate with friends, partners, or travel buddies.',
+    defaultOpen: false
+  },
+  {
+    id: 'faq-4',
+    question: 'What does marking a place as Stamped do?',
+    answer: "Marking a place as Stamped records your visit in your passport history, logs the date, lets you add personal notes and photos, and moves it to your 'Visited' archive.",
+    defaultOpen: false
+  }
+];
+---
+
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="faq-grid">
+      <!-- Left: Soho Map Card Mockup matching Figma -->
+      <div class="map-card-wrapper">
+        <div class="soho-map-card">
+          <img 
+            src={faqMapImg.src} 
+            alt="Stampd Soho Map showing saved restaurants, cafes, and nearby pins" 
+            class="soho-map-img" 
+            width="386" 
+            height="399" 
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+
+      <!-- Right: FAQ Accordions -->
+      <div class="faq-accordion-wrapper">
+        <h2 class="faq-main-title">
+          A few good questions.
+        </h2>
+
+        <div class="accordion-list">
+          {faqs.map((faq) => (
+            <div class:list={['accordion-item', { 'is-open': faq.defaultOpen }]} id={faq.id}>
+              <button 
+                type="button" 
+                class="accordion-trigger" 
+                aria-expanded={faq.defaultOpen ? 'true' : 'false'}
+                aria-controls={`content-${faq.id}`}
+              >
+                <span class="accordion-question">{faq.question}</span>
+                <span class="accordion-icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19" class="vert-line"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </button>
+              <div 
+                class="accordion-content" 
+                id={`content-${faq.id}`}
+                aria-hidden={faq.defaultOpen ? 'false' : 'true'}
+              >
+                <p class="accordion-answer">{faq.answer}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const accordionItems = document.querySelectorAll('.accordion-item');
+
+  accordionItems.forEach((item) => {
+    const trigger = item.querySelector('.accordion-trigger');
+    const content = item.querySelector('.accordion-content');
+
+    if (trigger && content) {
+      trigger.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+
+        // Toggle state
+        if (isOpen) {
+          item.classList.remove('is-open');
+          trigger.setAttribute('aria-expanded', 'false');
+          content.setAttribute('aria-hidden', 'true');
+        } else {
+          item.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+          content.setAttribute('aria-hidden', 'false');
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .faq-section {
+    padding-block: 5.5rem;
+    background-color: #FFFFFF;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    max-width: 1200px;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 940px) {
+    .faq-grid {
+      grid-template-columns: 440px 1fr;
+      gap: 4.5rem;
+    }
+  }
+
+  /* Left Soho Map Card */
+  .map-card-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .soho-map-card {
+    width: 100%;
+    max-width: 440px;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 12px 32px -8px rgba(28, 25, 23, 0.08), 0 2px 6px rgba(0, 0, 0, 0.02);
+    border: 1px solid #ECE7DE;
+    background-color: #FBF9F4;
+    transition: transform var(--transition-base);
+  }
+
+  .soho-map-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .soho-map-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Right FAQ Accordions */
+  .faq-accordion-wrapper {
+    width: 100%;
+  }
+
+  .faq-main-title {
+    font-size: clamp(2.25rem, 4.2vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: #171714;
+    margin-bottom: 2rem;
+  }
+
+  .accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .accordion-item {
+    background: #FFFFFF;
+    border: 1px solid #EFECE6;
+    border-radius: 18px;
+    padding: 1.25rem 1.5rem;
+    transition: all var(--transition-fast);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  }
+
+  .accordion-item:hover {
+    border-color: #E2DDD5;
+  }
+
+  .accordion-item.is-open {
+    border-color: #E5E0D7;
+    background: #FFFFFF;
+  }
+
+  .accordion-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    text-align: left;
+  }
+
+  .accordion-question {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #1A1715;
+    line-height: 1.35;
+  }
+
+  /* Circular plus icon with warm amber outline matching Figma */
+  .accordion-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #171513;
+    border: 1.5px solid #CE9B61;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    flex-shrink: 0;
+    transition: transform var(--transition-base);
+  }
+
+  .accordion-item.is-open .accordion-icon {
+    transform: rotate(45deg);
+  }
+
+  .accordion-content {
+    display: none;
+    padding-top: 0.875rem;
+  }
+
+  .accordion-item.is-open .accordion-content {
+    display: block;
+    animation: fadeIn 0.25s ease;
+  }
+
+  .accordion-answer {
+    font-size: 0.9375rem;
+    color: #6C6760;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .faq-section {
+      padding-block: 4rem;
+    }
+
+    .accordion-item {
+      padding: 1.125rem 1.25rem;
+      border-radius: 14px;
+    }
+
+    .accordion-question {
+      font-size: 0.9375rem;
+    }
+
+    .accordion-icon {
+      width: 32px;
+      height: 32px;
+    }
+  }
+</style>
