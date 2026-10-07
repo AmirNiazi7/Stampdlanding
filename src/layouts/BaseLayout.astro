@@ -54,5 +54,86 @@ const {
   </head>
   <body>
     <slot />
+
+    <!-- Smooth Left-to-Right Scroll Reveal Animation Script -->
+    <script is:inline>
+      (() => {
+        // Enable scroll animation style hooks
+        document.documentElement.classList.add('js-scroll-anim');
+
+        const initScrollReveal = () => {
+          // Select content blocks across sections to animate in smoothly from left to right
+          const targetSelectors = [
+            '.section-header',
+            '.metrics-grid > .metric-card',
+            '.browsing-grid',
+            '.feature-cards-col > .feature-card',
+            '.workflow-card',
+            '.social-import-grid',
+            '.shared-taste-card',
+            '.faq-header',
+            '.faq-item',
+            '.testimonials-header',
+            '.testimonial-card',
+            '.bottom-cta-card'
+          ];
+
+          const elements = document.querySelectorAll(targetSelectors.join(', '));
+          if (!elements.length) return;
+
+          elements.forEach((el) => {
+            el.classList.add('reveal-left');
+          });
+
+          // Stagger siblings in lists & grids for a cascading effect
+          const staggerGroups = [
+            '.metrics-grid',
+            '.feature-cards-col',
+            '.testimonials-grid',
+            '.faq-list'
+          ];
+
+          staggerGroups.forEach((groupSel) => {
+            const group = document.querySelector(groupSel);
+            if (group) {
+              Array.from(group.children).forEach((child, idx) => {
+                const delay = Math.min(idx + 1, 4);
+                child.classList.add(`reveal-delay-${delay}`);
+              });
+            }
+          });
+
+          // Fallback if IntersectionObserver is unsupported
+          if (!('IntersectionObserver' in window)) {
+            elements.forEach((el) => el.classList.add('is-revealed'));
+            return;
+          }
+
+          const observer = new IntersectionObserver(
+            (entries, obs) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-revealed');
+                  obs.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              root: null,
+              threshold: 0.08,
+              rootMargin: '0px 0px -40px 0px'
+            }
+          );
+
+          elements.forEach((el) => observer.observe(el));
+        };
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initScrollReveal);
+        } else {
+          initScrollReveal();
+        }
+      })();
+    </script>
   </body>
 </html>
