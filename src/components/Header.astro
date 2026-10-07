@@ -35,7 +35,7 @@ const { class: className = '' } = Astro.props;
 
     <!-- Header Actions (CTA + Mobile hamburger) -->
     <div class="header-actions">
-      <a href="#get-started" class="btn btn-primary btn-header">Get Started</a>
+      <a href="#get-started" class="btn btn-primary btn-header">Join Waitlist</a>
 
       <!-- Mobile hamburger toggle -->
       <button class="mobile-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -53,7 +53,7 @@ const { class: className = '' } = Astro.props;
       <a href="#how-it-works" class="mobile-nav-link">How it works</a>
       <a href="#invite-friends" class="mobile-nav-link">Invite Friends</a>
       <a href="#faq" class="mobile-nav-link">FAQ</a>
-      <a href="#get-started" class="btn btn-primary mobile-cta">Get Started</a>
+      <a href="#get-started" class="btn btn-primary mobile-cta">Join Waitlist</a>
     </nav>
   </div>
 </header>
@@ -169,8 +169,10 @@ const { class: className = '' } = Astro.props;
   }
 
   .btn-header {
-    padding: 0.625rem 1.35rem;
+    background: var(--color-primary-gradient);
+    padding: 0.625rem 1.4rem;
     font-size: 0.875rem;
+    font-weight: 700;
   }
 
   .mobile-toggle {

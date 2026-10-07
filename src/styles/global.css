@@ -9,7 +9,7 @@
   --color-primary-hover: #DF4204;
   --color-primary-dark: #C63500;
   --color-primary-light: #FFF0E9;
-  --color-primary-gradient: linear-gradient(135deg, #FF5E20 0%, #EE4605 100%);
+  --color-primary-gradient: linear-gradient(180deg, #FA977B 0%, #F57513 67%);
   --color-hero-gradient: linear-gradient(145deg, #FF5B1D 0%, #EA4404 100%);
 
   /* Neutrals & Text */
@@ -172,15 +172,15 @@ ol {
 }
 
 .btn-primary {
-  background-color: var(--color-primary);
+  background: var(--color-primary-gradient);
   color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(240, 83, 20, 0.3);
+  box-shadow: 0 4px 14px rgba(245, 117, 19, 0.35);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-primary-hover);
+  filter: brightness(1.06);
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(240, 83, 20, 0.35);
+  box-shadow: 0 6px 18px rgba(245, 117, 19, 0.45);
 }
 
 .btn-primary:active {
