@@ -1,4 +1,6 @@
 ---
+import logoSvg from '@assets/logo.svg';
+
 interface Props {
   class?: string;
 }
@@ -8,16 +10,17 @@ const { class: className = '' } = Astro.props;
 
 <header class:list={['site-header', className]} id="header">
   <div class="container header-inner">
-    <!-- Stampd Logo (Always inline flex: icon on left, wordmark on right) -->
+    <!-- Stampd Logo -->
     <a href="/" class="brand-logo" aria-label="Stampd Homepage">
-      <span class="logo-icon" aria-hidden="true">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="28" height="28" rx="8" fill="#F05314" />
-          <circle cx="14" cy="14" r="6" stroke="#FFFFFF" stroke-width="2.2" stroke-dasharray="2.5 2" />
-          <path d="M14 11V17M11 14H17" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
-        </svg>
-      </span>
-      <span class="brand-wordmark">stampd</span>
+      <img 
+        src={logoSvg.src} 
+        alt="Stampd" 
+        class="brand-logo-img" 
+        width="151" 
+        height="81" 
+        loading="eager" 
+        decoding="async" 
+      />
     </a>
 
     <!-- Desktop Navigation Links -->
@@ -97,31 +100,19 @@ const { class: className = '' } = Astro.props;
     height: 4.75rem;
   }
 
-  /* Logo: horizontal inline flex */
+  /* Logo */
   .brand-logo {
     display: inline-flex;
-    flex-direction: row;
     align-items: center;
-    gap: 0.625rem;
     text-decoration: none;
     flex-shrink: 0;
   }
 
-  .logo-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    flex-shrink: 0;
-  }
-
-  .brand-wordmark {
-    font-size: 1.625rem;
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    color: var(--color-text-primary);
-    line-height: 1;
+  .brand-logo-img {
+    height: 44px;
+    width: auto;
+    display: block;
+    object-fit: contain;
   }
 
   /* Nav Links */

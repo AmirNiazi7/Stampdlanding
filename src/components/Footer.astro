@@ -1,4 +1,5 @@
 ---
+import logoSvg from '@assets/logo.svg';
 ---
 
 <footer class="site-footer">
@@ -7,14 +8,15 @@
       <!-- Brand & Social Column -->
       <div class="footer-brand-col">
         <a href="/" class="footer-logo" aria-label="Stampd Homepage">
-          <span class="logo-icon-footer">
-            <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
-              <rect width="28" height="28" rx="8" fill="#F05314" />
-              <circle cx="14" cy="14" r="6" stroke="#FFFFFF" stroke-width="2.2" stroke-dasharray="2.5 2" />
-              <path d="M14 11V17M11 14H17" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
-            </svg>
-          </span>
-          <span class="footer-wordmark">stampd</span>
+          <img 
+            src={logoSvg.src} 
+            alt="Stampd" 
+            class="footer-logo-img" 
+            width="151" 
+            height="81" 
+            loading="lazy" 
+            decoding="async" 
+          />
         </a>
         <p class="footer-tagline">Your Taste, Mapped.</p>
 
@@ -114,15 +116,14 @@
   .footer-logo {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
     text-decoration: none;
   }
 
-  .footer-wordmark {
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    color: var(--color-text-primary);
+  .footer-logo-img {
+    height: 42px;
+    width: auto;
+    display: block;
+    object-fit: contain;
   }
 
   .footer-tagline {
