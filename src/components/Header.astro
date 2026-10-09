@@ -1,23 +1,7 @@
 ---
 import logoSvg from '@assets/logo.svg';
 
-interface Props {
-  class?: string;
-}
-
-const { class: className = '' } = Astro.props;
----
-
-<header class:list={['site-header', className]} id="header">
-  <div class="container header-inner">
-    <!-- Stampd Logo -->
-    <a href="/" class="brand-logo" aria-label="Stampd Homepage">
-      <img 
-        src={logoSvg.src} 
-        alt="Stampd" 
-        class="brand-logo-img" 
-        width="151" 
-        height="81" 
+inte
         loading="eager" 
         decoding="async" 
       />
