@@ -1,4 +1,6 @@
 ---
+import logoSvg from '@assets/logo.svg';
+
 interface Props {
   class?: string;
 }
@@ -8,6 +10,19 @@ const { class: className = '' } = Astro.props;
 
 <header class:list={['site-header', className]} id="header">
   <div class="container header-inner">
+    <!-- Stampd Logo -->
+    <a href="/" class="brand-logo" aria-label="Stampd Homepage">
+      <img 
+        src={logoSvg.src} 
+        alt="Stampd" 
+        class="brand-logo-img" 
+        width="151" 
+        height="81" 
+        loading="eager" 
+        decoding="async" 
+      />
+    </a>
+
     <!-- Desktop Navigation Links -->
     <nav class="site-nav" aria-label="Main Navigation">
       <ul class="nav-list">
@@ -85,6 +100,21 @@ const { class: className = '' } = Astro.props;
     height: 4.75rem;
   }
 
+  /* Logo */
+  .brand-logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .brand-logo-img {
+    height: 44px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+  }
+
   /* Nav Links */
   .site-nav {
     display: none;
@@ -136,7 +166,6 @@ const { class: className = '' } = Astro.props;
     align-items: center;
     gap: 1rem;
     flex-shrink: 0;
-    margin-left: auto;
   }
 
   .btn-header {
